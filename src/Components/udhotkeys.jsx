@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {GlobalHotKeys} from 'react-hotkeys';
+import {GlobalHotKeys, HotKeys} from 'react-hotkeys';
 
 export default class UDHotkeys extends Component {
   // state is for keeping control state before or after changes.
@@ -49,7 +49,7 @@ export default class UDHotkeys extends Component {
     UniversalDashboard.publish('element-event', {
         type: 'clientEvent',
         eventId: id,
-        eventName: 'onChange',
+        eventName: 'onHotKey',
         eventData: false
     });
   }
@@ -59,11 +59,27 @@ export default class UDHotkeys extends Component {
 
     const handlers = this.GetHandlers();
 
-    return (
-      <GlobalHotKeys 
-        keyMap={keyMap} 
-        handlers={handlers} 
-        />
-        )
+    if (this.props.isGlobal) {
+      return (
+        <GlobalHotKeys 
+          keyMap={keyMap} 
+          handlers={handlers} 
+          />
+          );
+    }
+    else {
+      var content = this.props.content;
+        if (!Array.isArray(content))
+        {
+            content = [content]
+        }
+      content = content.map(x => {
+        return UniversalDashboard.renderComponent(x);
+      });
+      return (
+        <HotKeys keyMap={keyMap} handlers={handlers}>
+          {content}
+        </HotKeys>);
+    }
   }
 }

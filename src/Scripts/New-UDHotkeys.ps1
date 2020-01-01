@@ -16,21 +16,25 @@
     General notes
 #>
 function New-UDHotkeys {
-    [CmdletBinding(DefaultParameterSetName = "Default")]
+    [CmdletBinding(DefaultParameterSetName = "Global")]
     param(
         [Parameter()]
         [string]$Id = ([Guid]::NewGuid()),
         [Parameter()]
         [scriptblock]$hotKeys,
-        [Parameter()]
-        [ValidateSet(
-            'Global'
-        )]
-        [string]$scope
+        [Parameter(
+            ParameterSetName = "Content")]
+        [scriptblock]$Content
     )
     Begin {
         $keymap = @{} 
         $handlers = @{}
+        if ($null -eq $Content) {
+            $isGlobal = $true
+        } 
+        else {
+            $isGlobal = $false
+        }
     }
 
     Process {
@@ -58,8 +62,9 @@ function New-UDHotkeys {
             names = $names
             count = $names.count
             isEndpoint = $isEndpoint
+            isGlobal = $isGlobal
+            content = if($null -ne $content) {& $Content}
         }
-
     }
 }
 
