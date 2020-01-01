@@ -1,2 +1,2 @@
-import UDCalendar from './udcalendar';
-UniversalDashboard.register("ud-calendar", UDCalendar);
+import UDHotkeys from './udhotkeys';
+UniversalDashboard.register("ud-hotkeys", UDHotkeys);

@@ -1,11 +1,10 @@
 ---
-external help file: UniversalDashboard.UD-Calendar-help.xml
-Module Name: UniversalDashboard.UD-Calendar
+external help file: UniversalDashboard.UD-Hotkeys-help.xml
+Module Name: UniversalDashboard.UD-Hotkeys
 online version:
 schema: 2.0.0
 ---
 
-#<%=$PLASTER_PARAM_CommandName%>
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}

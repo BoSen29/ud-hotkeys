@@ -1,10 +1,10 @@
-# Universal Dashboard Calendar
-A dynamic calendar for Universal Dashboard.
+# Universal Dashboard Hotkeys
+Hotkey support for UDDashboard.
 
 ### Installation
 
 ```
-Install-module UniversalDashboard.UD-Calendar
+Install-module UniversalDashboard.UD-Hotkeys
 ``` 
 
 Either that or clone the repo, and run build.ps1
