@@ -2,46 +2,27 @@ import React, {Component} from 'react';
 import {GlobalHotKeys, HotKeys} from 'react-hotkeys';
 
 export default class UDHotkeys extends Component {
-  // state is for keeping control state before or after changes.
 
   GetHandlers() {
     var tbReturn = {};
-    if (this.props.count === 1) {
-      if (this.props.isEndpoint) {
-        tbReturn[this.props.names] = () => this.onEndpointTrigger(this.props.handlers);
+
+    this.props.hotkeys.map((e) => {
+      var handler = e.action
+      if (e.isEndpoint) {
+        tbReturn[e.name] = () => this.onEndpointTrigger(handler);
       }
       else {
-        tbReturn[this.props.names] = () => eval(this.props.handlers);
+        tbReturn[e.name] = () => eval(handler);
       }
-    }
-    else {
-      var curr = Number("0");
-      this.props.names.map((e) => {
-        var handler = this.props.handlers[curr];
-        if (this.props.isEndpoint[curr]) {
-          tbReturn[e] = () => this.onEndpointTrigger(handler);
-        }
-        else {
-          tbReturn[e] = () => eval(handler);
-        }
-        curr++;
-      }); 
-    }
+    }); 
     return tbReturn
   };
 
   GetKeyMaps() {
     var tbReturn = {};
-    if (this.props.count === 1) {
-      tbReturn[this.props.names] = this.props.keyMap;
-    }
-    else {
-      var curr = Number("0");
-      this.props.names.map((e) => {
-        tbReturn[e] = this.props.keyMap[curr];
-        curr++;
-      });
-    }
+    this.props.hotkeys.map((e) => {
+      tbReturn[e.name] = e.keyMap;
+    });
     return tbReturn
   }
 
@@ -56,9 +37,7 @@ export default class UDHotkeys extends Component {
 
   render() {
     const keyMap = this.GetKeyMaps()
-
     const handlers = this.GetHandlers();
-
     if (this.props.isGlobal) {
       return (
         <GlobalHotKeys 

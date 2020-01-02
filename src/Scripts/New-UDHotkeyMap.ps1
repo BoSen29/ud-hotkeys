@@ -15,14 +15,12 @@ function New-UDHotkeyMap {
         if ( $hotkey -eq "konami") {
             $hotkey = "up up down down left right left right b a s t a r t"
         }
-        if ($hotkey.count -gt 1) {
-            $hotkey = [array]$hotkey
-        }
 
-        $Out = @{
+        $Out = [Hashtable]@{
             name = $name
             action = ""
             keyMap = $hotkey
+            isEndpoint = $false
         }
         
     }
@@ -35,7 +33,6 @@ function New-UDHotkeyMap {
             $Out.action = $actionInvoked.id
         }
         else {
-            $Out.isEndpoint = $false
             $Out.action = $actionInvoked.javascript
         }
 

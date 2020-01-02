@@ -1,6 +1,5 @@
 Import-Module UniversalDashboard
-#Import-Module UniversalDashboard.UD-Hotkeys
-Import-Module C:\dev\ud-hotkeys\src\output\UniversalDashboard.UD-Hotkeys\UniversalDashboard.UD-Hotkeys.psm1
+Import-Module UniversalDashboard.UD-Hotkeys
 
 $endpointinit = New-UDEndpointInitialization -Module @("UD-HotKeys")
 

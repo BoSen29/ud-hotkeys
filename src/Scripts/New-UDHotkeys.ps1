@@ -27,8 +27,6 @@ function New-UDHotkeys {
         [scriptblock]$Content
     )
     Begin {
-        $keymap = @{} 
-        $handlers = @{}
         if ($null -eq $Content) {
             $isGlobal = $true
         } 
@@ -39,12 +37,6 @@ function New-UDHotkeys {
 
     Process {
         $hotInvoked = $hotKeys.Invoke();
-
-        $keymap = $hotInvoked.keyMap
-        $handlers = $hotInvoked.action
-        $names = $hotInvoked.name
-        $isEndpoint = $hotInvoked.isEndpoint
-        
     }
 
     End {
@@ -57,13 +49,9 @@ function New-UDHotkeys {
             type = "ud-hotkeys"
             # An ID is mandatory 
             id = $Id
-            keyMap = $keymap
-            handlers = $handlers
-            names = $names
-            count = $names.count
-            isEndpoint = $isEndpoint
+            hotkeys = $hotInvoked
             isGlobal = $isGlobal
-            content = if($null -ne $content) {& $Content}
+            content = if($null -ne $Content) {& $Content}
         }
     }
 }

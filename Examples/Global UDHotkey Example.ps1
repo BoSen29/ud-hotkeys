@@ -1,6 +1,5 @@
 Import-Module UniversalDashboard
-#Import-Module UniversalDashboard.UD-Hotkeys
-Import-Module C:\dev\ud-hotkeys\src\output\UniversalDashboard.UD-Hotkeys\UniversalDashboard.UD-Hotkeys.psm1
+Import-Module UniversalDashboard.UD-Hotkeys
 
 $endpointinit = New-UDEndpointInitialization -Module @("UD-HotKeys")
 
@@ -25,7 +24,7 @@ $dashboard = New-UDDashboard -title "Non Global Hotkeys" -Content {
         Show-UDToast -Message "maybe $stuff"
     }
 
-    New-UDCard -Title "This is card inside child"
+    New-UDCard -Title "This card is not a child of ud-hotkeys"
 
 } -theme $theme -EndpointInitialization $endpointinit
 
