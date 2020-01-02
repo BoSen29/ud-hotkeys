@@ -1,7 +1,7 @@
 Import-Module UniversalDashboard
 Import-Module UniversalDashboard.UD-Hotkeys
 
-$endpointinit = New-UDEndpointInitialization -Module @("UD-HotKeys")
+$endpointinit = New-UDEndpointInitialization -Module @("UniversalDashboard.UD-HotKeys")
 
 Get-UDDashboard | Stop-UDDashboard
 
